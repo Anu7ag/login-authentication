@@ -77,8 +77,9 @@ async function hanRed(req, res) {
     //     console.error('Entry or redirectURL not found');
     //     return res.status(404).send('Not Found');
     // }
-    const html = `<a href= ${entry.redirectURL}>hello </a>`
-    res.end(html)
+    // const html = `<a href= ${entry.redirectURL}>hello </a>`
+    // res.end(html)
+    res.end(entry.redirectURL)
 
 
 }
