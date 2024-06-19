@@ -19,7 +19,7 @@ const handleUserLogin = async (req, res) => {
     if (!user) {
         return res.render("relogin", { error: "Invalid Username or Password" })
     }
-    res.render('home')
+    res.render('shortid')
     //return res.redirect("/")
 }
 

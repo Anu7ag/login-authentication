@@ -10,12 +10,54 @@ async function handleURLGenerator(req, res) {
         redirectURL: body.url,
         visitHistory: [],
     })
-    return res.json({ id: shortId })
+    return res.send({ shortId: shortId })
 
 }
 async function handleRedirect(req, res) {
+    try {
+        const shortId = req.params.shortId;
+        const entry = await URL.findOneAndUpdate(
+            {
+                shortId,
+            },
+            {
+                $push: {
+                    visitHistory: {
+                        timestamp: Date.now(),
+                    },
+                },
+            },
+            { new: true }
+        );
 
-    const shortId = req.params.shortId;
+
+        if (!entry || !entry.redirectURL) {
+            console.error('Entry or redirectURL not found');
+            return res.status(404).send('Not Found');
+        }
+        return res.redirect(entry.redirectURL)
+
+
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).send('Internal Server Error');
+    }
+}
+async function handleGetAnalytics(req, res) {
+    const shortId = req.params.shortId
+    const result = await URL.findOne({ shortId })
+    return res.json({
+        totalClicks: result.visitHistory.length, analytics: result.visitHistory
+    })
+
+
+
+}
+
+async function hanRed(req, res) {
+
+    const { shortId } = req.body
     const entry = await URL.findOneAndUpdate(
         {
             shortId,
@@ -26,24 +68,22 @@ async function handleRedirect(req, res) {
                     timestamp: Date.now(),
                 },
             },
-        }
+        },
+        { new: true }
     );
-    const url = 'google.com'
-    res.redirect(url)
+
+
     // if (!entry || !entry.redirectURL) {
     //     console.error('Entry or redirectURL not found');
     //     return res.status(404).send('Not Found');
-    // }  
-
+    // }
+    const html = `<a href= ${entry.redirectURL}>hello </a>`
+    res.end(html)
 
 
 }
 
 
-
-//     if (!entry.redirectURL) return res.status(400).json({ error: 'Cannot find the url' })
-//     res.redirect(entry.redirectURL);
-// };
 
 
 
@@ -51,6 +91,8 @@ async function handleRedirect(req, res) {
 
 module.exports = {
     handleURLGenerator,
-    handleRedirect
+    handleRedirect,
+    handleGetAnalytics,
+    hanRed
 
 }
