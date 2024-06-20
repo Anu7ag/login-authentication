@@ -79,7 +79,7 @@ async function hanRed(req, res) {
     // }
     // const html = `<a href= ${entry.redirectURL}>hello </a>`
     // res.end(html)
-    res.end(entry.redirectURL)
+    res.redirect(entry.redirectURL)
 
 
 }

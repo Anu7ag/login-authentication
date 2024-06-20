@@ -35,7 +35,7 @@ app.use('/url', urlRoute)
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
-        app.listen(port, () => { console.log(`Connection at Port:${port}`) })
+        app.listen(port, () => { console.log(`Connection at http://localhost:${port}`) })
 
     } catch (error) {
         console.log(error)
