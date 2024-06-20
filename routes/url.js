@@ -4,8 +4,8 @@ const { handleURLGenerator, handleRedirect, handleGetAnalytics, hanRed } = requi
 
 
 router.route('/').post(handleURLGenerator)
-router.route('/:shortId').get(handleRedirect)
-router.route("/abc").post(hanRed)
+// router.route('/:shortId').get(handleRedirect)
+router.route("/redirect").post(handleRedirect)
 router.route('/analytics/:shortId').get(handleGetAnalytics)
 
 module.exports = router

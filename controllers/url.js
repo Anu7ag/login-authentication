@@ -15,7 +15,7 @@ async function handleURLGenerator(req, res) {
 }
 async function handleRedirect(req, res) {
     try {
-        const shortId = req.params.shortId;
+        const { shortId } = req.body;
         const entry = await URL.findOneAndUpdate(
             {
                 shortId,
@@ -55,34 +55,7 @@ async function handleGetAnalytics(req, res) {
 
 }
 
-async function hanRed(req, res) {
 
-    const { shortId } = req.body
-    const entry = await URL.findOneAndUpdate(
-        {
-            shortId,
-        },
-        {
-            $push: {
-                visitHistory: {
-                    timestamp: Date.now(),
-                },
-            },
-        },
-        { new: true }
-    );
-
-
-    // if (!entry || !entry.redirectURL) {
-    //     console.error('Entry or redirectURL not found');
-    //     return res.status(404).send('Not Found');
-    // }
-    // const html = `<a href= ${entry.redirectURL}>hello </a>`
-    // res.end(html)
-    res.redirect(entry.redirectURL)
-
-
-}
 
 
 
@@ -94,6 +67,5 @@ module.exports = {
     handleURLGenerator,
     handleRedirect,
     handleGetAnalytics,
-    hanRed
 
 }
