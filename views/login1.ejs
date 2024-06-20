@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    
+    section {
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        color: #fff;
+        background-image: url(black\ panther.webp);
+        background-size: cover;
+        background-position: center;
+        animation: animate 5s linear infinite;
+    }
+    
+    @keyframes animate {
+        100% {
+            filter: hue-rotate(360deg);
+        }
+    }
+    
+    ::-ms-reveal {
+        filter: invert(100%);
+    }
+    
+    .page {
+        background-color: transparent;
+        height: 450px;
+        width: 400px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    h3 {
+        text-align: center;
+        font-size: 2em;
+    }
+    
+    .Entry {
+        position: relative;
+        width: 310px;
+        margin: 30px 0;
+        border-bottom: 1px solid #fff;
+    }
+    
+    .Entry label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        color: rgb(255, 148, 255);
+        ;
+        pointer-events: none;
+        transition: .5s;
+    }
+    
+    .Entry input:focus~label,
+    .Entry input:valid~label {
+        top: -5px;
+    }
+    
+    .Entry input:hover~label {
+        top: -5px;
+    }
+    
+    .Entry input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: blueviolet;
+        height: 50px;
+        width: 100%;
+        font-size: 1em;
+    }
+    
+    #remember {
+        accent-color: red;
+    }
+    
+    
+    .forgot {
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .forgot input {
+        margin-right: 5px;
+    }
+    
+    .forgot p {
+        margin-left: 80px;
+    }
+    
+    .forgot a {
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    .forgot a:hover {
+        color: rgb(255, 148, 255);
+    }
+    
+    .new {
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    .new a {
+        text-decoration: none;
+        color: #fff;
+        margin-left: 5px;
+    }
+    
+    .new a:hover {
+        color: rgb(255, 148, 255);
+    }
+    
+    .custom-checkbox input:checked~.checkmark {
+        background-color: white;
+    }
+    
+    button {
+        width: 100%;
+        height: 30px;
+        margin: 20px 0;
+        border-radius: 10px;
+        border: none;
+    }
+    
+    button:hover {
+        box-shadow: 1px 1px 2px white, 0px 0px 25px rgb(172, 27, 201), 0px 0px 5px rgb(150, 1, 106);
+    }
+    </style>
+
+
+
+
+
+
+    <section id="sec">
+      <div class="page">
+        <form action = "/user/login" method="post">
+          <h3>Login</h3>
+          <div class="Entry">
+            <input type="text" id="email" required name="email"/>
+            <label for="email">Username</label>
+          </div>
+          <div class="Entry">
+            <input type:"password" id = "pass" required name="password"/>
+            <label for="pass">Password</label>
+          </div>
+          <div class="forgot">
+            <input type="checkbox" id="remember" />
+            <label for="remember">Remember me</label>
+            <p><a href="#">Forget Password?</a></p>
+          </div>
+          <button id="login" type="submit">Login</button>
+          <div class="new">
+            <p>Don't have an account?</p>
+            <form method="GET" action="/signup">
+                <label></label>
+                <button >Sign up</button>
+              </form>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
