@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorten URL</title>
+</head>
+<body>
+    
+    <h2> Your shorten id is:</h2>
+        
+    <% if (shortId) { %>
+        <h2><%= shortId %></h2>
+    <% } %>
+   
+    <h3>Visit the homepage to redirect
+        <form action="/" method="GET">
+            <button type="submit">homepage</button>
+        </form>
+    </h3>
+    
+</body>
+</html>

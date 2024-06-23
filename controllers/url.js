@@ -10,7 +10,10 @@ async function handleURLGenerator(req, res) {
         redirectURL: body.url,
         visitHistory: [],
     })
-    return res.send({ shortId: shortId })
+    // return res.json({ shortId: shortId, data: "Use it in the homepage" })
+    console.log()
+    return res.render('finalout', { shortId })
+
 
 }
 async function handleRedirect(req, res) {
